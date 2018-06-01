@@ -4,291 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
-    <meta name="x5-fullscreen" content="true">
-    <meta name="full-screen" content="yes">
-
-    <title>Product Management</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <title>密码生成器</title>
     <link rel="stylesheet" href="lib/bootstrap-4.0.0-dist/css/bootstrap.min.css">
-    <style>
-
-        .title {
-            padding: 0;
-            font-size: 28px;
-            letter-spacing: -1px;
-            display: block;
-            color: #666;
-            margin: 0 0 15px;
-            font-weight: 300;
-            font-family: Open Sans,sans-serif;
-            text-align: center;
-            font-size: 30px;
-        }
-
-        .product {
-            width: 50%;
-            height: auto;
-            margin: auto;
-        }
-
-        .producttext {
-            height: 40px;
-            font-size: 14px;
-            font-weight: 400;
-            font-family: Open Sans,sans-serif;
-            color: #333;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            box-shadow: none;
-            width: 70%;
-            padding: 6px 12px;
-        }
-
-        .price {
-            height: 40px;
-            font-size: 14px;
-            font-weight: 400;
-            font-family: Open Sans,sans-serif;
-            color: #333;
-            background-color: #fff;
-            border: 1px solid #e5e5e5;
-            box-shadow: none;
-            width: 30%;
-            padding: 6px 12px;
-        }
-
-        .help-block {
-            margin-top: 10px;
-            margin-bottom: 5px;
-            display: block;
-            color: #737373;
-            font-family: Open Sans,sans-serif;
-            font-size: 16px;
-        }
-
-        .product button{
-            width: 18%;
-            height: 40px;
-            margin: auto;
-            margin-left:10px;
-            color: #fff;
-            background-color: #35aa47;
-            font-size: 14px;
-            font-weight: 400;
-            font-family: Open Sans,sans-serif;
-        }
-
-        .result_get {
-            width: 50%;
-            height: auto;
-            margin: auto;
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: 400;
-            font-family: Open Sans,sans-serif;
-        }
-        .result_get button{
-            width: 8%;
-            margin: auto;
-            /*color: #fff;*/
-            /*background-color: #35aa47;*/
-            font-size: 14px;
-            font-weight: 400;
-            font-family: Open Sans,sans-serif;
-        }
-        .result_success{
-            width: 57%;
-            margin: auto;
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-top: 20px;
-        }
-
-        .result_attribute p{
-            display: inline-block;
-            font-size: 18px;
-        }
-
-        #search_banner{
-            font-size: 50px;
-            border-bottom: 1px solid black;
-        }
-
-        p{
-            text-indent:2em;
-            font-size: 30px;
-        }
-
-        .hide{
-            display: none;
-        }
-
-        .contenner{
-            height: 1500px;
-        }
-
-        .result_fail{
-
-        }
-
-        .addinput{
-            margin-top: 10px
-        }
-    </style>
 </head>
 
 <body>
-<div class="contenner">
-    <br>
-    <div class="title">Product Management</div>
-    <br>
-    <div class="product">
-        <input id="productName" type="text" class="producttext" placeholder="Type your product here">
-        <button id=find>Find</button>
+    <div class="container" style="height: 100%;margin:auto">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">密码生成器</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active" id="generateTab">
+                <a class="nav-link" href="#">生成<span class="sr-only">(current)</span></a>
+              </li>
+               <li class="nav-item" id="findTab">
+                <a class="nav-link" href="#" id="findLink">查询<span class="sr-only">(current)</span></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="mt-5" style="max-height: 768px;margin: auto;">
+            <ol class="grey-color text-center animated fadeInDown">
+              <p>还在为难记的密码烦恼吗？</p>
+              <p>现在可以用自己的语言生成密码了</p>
+              <p></p>
+            </ol>
+      </div>
+        <form class="mt-5" id="generator">
+          <div class="input-group mb-3 mt-5" style="max-width:768px;margin:0 auto;">
+              <input type="text" class="form-control" id="original" placeholder="输入原始字符串" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" id="btnGeneratePW" type="button">生成密码</button>
+                <button class="btn btn-primary" id="btnGetPW" type="button" style="display:none">查询</button>
+              </div>
+            </div>
+            <div class="input-group mb-3 mt-5" style="max-width:768px;margin:0 auto;">
+                <input type="text" class="form-control" disabled="disabled" id="generated" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" id="copy" type="button">
+                        <svg class="octicon octicon-clippy" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M2 13h4v1H2v-1zm5-6H2v1h5V7zm2 3V8l-3 3 3 3v-2h5v-2H9zM4.5 9H2v1h2.5V9zM2 12h2.5v-1H2v1zm9 1h1v2c-.02.28-.11.52-.3.7-.19.18-.42.28-.7.3H1c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1h3c0-1.11.89-2 2-2 1.11 0 2 .89 2 2h3c.55 0 1 .45 1 1v5h-1V6H1v9h10v-2zM2 5h8c0-.55-.45-1-1-1H8c-.55 0-1-.45-1-1s-.45-1-1-1-1 .45-1 1-.45 1-1 1H3c-.55 0-1 .45-1 1z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="footer text-center" style="margin-top: -1px">
+            <hr>
+            <p class="copyright small">Powered by GH</p>
+        </div>
     </div>
-    <div id="searching" class="result_get hide">Searching...</div>
-    <div class="result_success hide">
-
-        <div class="result_attribute">
-            <p>Product:</p><p id="result_product">default product</p>
-        </div>
-        <div class="result_attribute">
-            <p>Price:</p><p id="result_price">default price</p>
-        </div>
-        <div class="result_attribute">
-            <p>Description:</p><p id="result_description">default description</p>
-        </div>
-    </div>
-    <div class="result_fail hide">
-        <div class="result_get">No product "<b id="result_fail_add">your product</b>"!</div>
-        <br>
-        <hr class="result_get">
-        <br>
-        <!-- <div class="result_get"><b>Add it:</b></div> -->
-        <span class="help-block product">Enter the product description and its price:</span>
-        <div class="product">
-            <input id="description" type="text" class="addinput producttext" placeholder="Product Description">
-            <input id="price" type="text" class="price addinput"  placeholder="Price($)" onchange="if(isNaN(this.value)){alert('Price should be a number.');this.value='';}">
-            <button id="add">Add</button>
-        </div>
-    </div>
-    
-</div>
+</body>
 <script src=lib/jquery-3.3.1.min.js></script>
 <script src=lib/nebPay.js></script>
 <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
 <script src=lib/nebulas.js></script>
-<script>
-
-    "use strict";
-    // var testDapp = "n1xCR9gTA8feKJjrE673oBFr69RjXHPdZcL";
-    var dappAddress = "n1wTdRUqJ8fbsiSDFWpmHAETi9wSipdWTok";
-    var nebulas = require("nebulas"),
-        Account = nebulas.Account,
-        neb = new nebulas.Neb();
-    neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
-
-    var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
-    var nebPay = new NebPay();
-
-    // Find
-    $("#find").click(function(){
-        var from = Account.NewAccount().getAddressString();
-        var value = "0";
-        var nonce = "0"
-        var gas_price = "1000000"
-        var gas_limit = "2000000"
-        var callFunction = "get";
-        var callArgs = "[\"" + $("#productName").val() + "\"]"; 
-        var contract = {
-            "function": callFunction,
-            "args": callArgs
-        }
-        $("#searching").removeClass("hide");
-        $(".result_success").addClass("hide");
-        $(".result_fail").addClass("hide");
-        neb.api.call(from,dappAddress,value,nonce,gas_price,gas_limit,contract).then(function (resp) {
-            cbFind(resp)
-        }).catch(function (err) {
-            console.log("error:" + err.message)
-        })
-    })
-
-    //find call back function
-    function cbFind(resp) {
-        var result = resp.result;
-        console.log("return of rpc call: " + JSON.stringify(result));
-        $("#searching").addClass("hide");
-        if (result === "null"){
-            $("#result_fail_add").text($("#productName").val())
-            $("#description").val("");
-            $("#price").val("");
-            $(".result_success").addClass("hide");
-            $(".result_fail").removeClass("hide");
-        } else{
-            //if result is not null, then it should be "return value" or "error message"
-            try{
-                result = JSON.parse(result)
-            }catch (err){
-                //result is the error message
-            }
-
-            if (!!result.name){      //"return value"
-                $(".result_fail").addClass("hide");
-
-                $("#result_product").text(result.name);
-                $("#result_price").text(result.price+" $");
-                $("#result_description").text(result.description);
-
-                $(".result_success").removeClass("hide");
-            } else {        //"error message"
-                $(".result_fail").addClass("hide");
-                $(".result_success").addClass("hide");
-            }
-
-        }
-
-    }
-    //add product
-    var serialNumber;
-    $("#add").click(function() {
-
-        var to = dappAddress;
-        var value = "0";
-        var callFunction = "save"
-        var callArgs = "[\"" + $("#productName").val() + "\",\"" + $("#description").val() + "\",\"" + $("#price").val() + "\"]";
-
-        serialNumber = nebPay.call(to, value, callFunction, callArgs, {
-            listener: cbAdd       //callback add
-        });
-        intervalQuery = setInterval(function () {
-            funcIntervalQuery();
-        }, 10000);
-    });
-
-    var intervalQuery
-
-    function funcIntervalQuery() {
-        nebPay.queryPayInfo(serialNumber)   //search transaction result from server (result upload to server by app)
-            .then(function (resp) {
-                console.log("tx result: " + resp)   //resp is a JSON string
-                var respObject = JSON.parse(resp)
-                if(respObject.code === 0){
-                    alert(`Add ${$("#productName").val()} successfully!`)
-                    clearInterval(intervalQuery)
-                }
-            })
-            .catch(function (err) {
-                console.log(err);
-            });
-    }
-
-    function cbAdd(resp) {
-        console.log("response of push: " + JSON.stringify(resp))
-    }
-
-</script>
-</body>
-
+<script src=lib/main.js></script>
 </html>
-# gini5.github.io
