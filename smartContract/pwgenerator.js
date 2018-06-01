@@ -15,11 +15,15 @@ PWGenerator.prototype = {
         // todo
     },
 
-    generatePW: function (key) {
+    generatePW: function (key,length) {
         if (key === ""){
             throw new Error("empty key");
         }
-        var pw = this._randomPassword(10);
+        length = parseInt(length);
+        if(length < 1){
+            length = 8;
+        }
+        var pw = this._randomPassword(length);
         this.repo.put(key, {
             pw: pw,
             from: Blockchain.transaction.from
