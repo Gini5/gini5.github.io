@@ -50,3 +50,15 @@ body {
     letter-spacing: 0.08rem;
     font-family: open sans, helvetica neue, helvetica, arial, sans-serif
 }
+.navbar-nav li{
+    padding: 10px;
+}
+.navbar-nav .active{
+    padding: 10px;
+    background-color: rgba(255,255,255,0.3);
+}
+.navbar-nav li a:hover{
+    text-decoration: none;
+    pointer:cursor;
+    color: white;
+}
