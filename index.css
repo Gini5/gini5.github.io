@@ -53,6 +53,10 @@ body {
 .navbar-nav li{
     padding: 10px;
 }
+.navbar-nav li:hover{
+    padding: 10px;
+    background-color: rgba(255,255,255,0.5);
+}
 .navbar-nav .active{
     padding: 10px;
     background-color: rgba(255,255,255,0.3);
