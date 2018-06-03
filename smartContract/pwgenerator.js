@@ -19,6 +19,9 @@ PWGenerator.prototype = {
         if (key === ""){
             throw new Error("empty key");
         }
+        if(length === ""){
+            length = 8;
+        }
         length = parseInt(length);
         if(length < 1){
             length = 8;
